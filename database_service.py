@@ -16,6 +16,7 @@ def get_data_count():
         label_name=int(request.args.get('label_name'))
         count=int(request.args.get('count'))
         connection= psycopg2.connect(user="postgres",password="postgres",host='127.0.0.1', port='5432', database="imdb_data")
+        cursor=connection.cursor()
         cursor.execute("SELECT COUNT(lable_name) FROM data_labeling WHERE lable_name = 1 ")
         result=cursor.fetchone()
         return  jsonify(result)
